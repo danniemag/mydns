@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      record:
+        types:
+          a:     A
+          txt:   TXT
+          cname: CNAME
+          ptr:   PTR

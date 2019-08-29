@@ -13,7 +13,11 @@
 
   <div class="field">
     <%= form.label :type %>
-    <%= form.number_field :type %>
+    <%= form.select :type,
+                    Record.type_attribute_names,
+                    { include_blank: true },
+                    { class: 'select2 form-control' }
+    %>
   </div>
 
   <div class="field">
@@ -33,7 +37,8 @@
 
   <div class="field">
     <%= form.label :domain_id %>
-    <%= form.text_field :domain_id %>
+    <%#= form.select(:domain_id, @domain.all.collect {|d| [d.name, d.id]}) %>
+    <%= form.number_field :domain_id %>
   </div>
 
   <div class="actions">
