@@ -37,8 +37,7 @@
 
   <div class="field">
     <%= form.label :domain_id %>
-    <%#= form.select(:domain_id, @domain.all.collect {|d| [d.name, d.id]}) %>
-    <%= form.number_field :domain_id %>
+    <%= select_tag(:domain_id, options_from_collection_for_select(Domain.all, :id, :name), include_blank: "Select Domain...") %>
   </div>
 
   <div class="actions">
