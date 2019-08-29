@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @record.type %>
+</p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @record.host %>
+</p>
+
+<p>
+  <strong>Ttl:</strong>
+  <%= @record.ttl %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @record.content %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @record.domain %>
+</p>
+
+<%= link_to 'Edit', edit_record_path(@record) %> |
+<%= link_to 'Back', records_path %>
