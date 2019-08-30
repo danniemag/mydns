@@ -1,10 +1,11 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
+  before_action :set_domain
 
   # GET /records
   # GET /records.json
   def index
-    @records = Record.all
+    @records = Record.where(domain_id: params[:domain_id])
   end
 
   # GET /records/1
@@ -28,7 +29,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
+        format.html { redirect_to domain_record_path(@record.domain_id, @record.id), notice: 'Record was successfully created.' }
         format.json { render :show, status: :created, location: @record }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       if @record.update(record_params)
-        format.html { redirect_to @record, notice: 'Record was successfully updated.' }
+        format.html { redirect_to domain_record_path(@record.domain_id, @record.id), notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class RecordsController < ApplicationController
   def destroy
     @record.destroy
     respond_to do |format|
-      format.html { redirect_to records_url, notice: 'Record was successfully destroyed.' }
+      format.html { redirect_to domain_records_url, notice: 'Record was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
