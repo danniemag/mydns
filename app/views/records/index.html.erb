@@ -4,7 +4,7 @@
 
 <h3>DOMAIN: <%= @domain.name %></h3>
 
-<table>
+<table id="recordsTable">
   <thead>
     <tr>
       <th>Type</th>
@@ -12,7 +12,9 @@
       <th>TTL</th>
       <th>Content</th>
       <th>Domain</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -37,3 +39,11 @@
 
 <%= link_to 'New Record', new_domain_record_path %>
 <%= link_to 'Back to Domains', domains_path %>
+
+
+
+<script>
+    $(document).ready( function () {
+        $('#recordsTable').DataTable();
+    } );
+</script>
