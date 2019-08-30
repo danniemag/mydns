@@ -7,8 +7,8 @@ class DomainService
       return nil if (main_domain_name.eql? name) || (name.nil?)
 
       if Domain.find_by(name: main_domain_name).nil?
-        Domain.create(name: name)
-        main_domain = Domain.find_by(name: name)
+        Domain.create(name: main_domain_name)
+        main_domain = Domain.find_by(name: main_domain_name)
         return main_domain
       else
         return Domain.find_by(name: main_domain_name)
@@ -38,5 +38,13 @@ class DomainService
     else
       return 'ERROR: Bad DataFile or NoFileUploaded - No operation performed'
     end
+  end
+
+  def self.cascade_destroy(domain)
+    Record.where(domain_id: domain.id).destroy_all
+    Domain.where(main_domain: domain.id).each do |subdomain|
+      Record.where(domain_id: subdomain.id).destroy_all
+    end
+    Domain.where(main_domain: domain.id).destroy_all
   end
 end
