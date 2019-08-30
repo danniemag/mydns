@@ -18,7 +18,7 @@ class RecordsTest < ApplicationSystemTestCase
     fill_in "Domain", with: @record.domain_id
     fill_in "Host", with: @record.host
     fill_in "Ttl", with: @record.ttl
-    fill_in "Type", with: @record.type
+    fill_in "Type", with: @record.record_type
     click_on "Create Record"
 
     assert_text "Record was successfully created"
@@ -33,7 +33,7 @@ class RecordsTest < ApplicationSystemTestCase
     fill_in "Domain", with: @record.domain_id
     fill_in "Host", with: @record.host
     fill_in "Ttl", with: @record.ttl
-    fill_in "Type", with: @record.type
+    fill_in "Type", with: @record.record_type
     click_on "Update Record"
 
     assert_text "Record was successfully updated"

@@ -34,7 +34,7 @@ en:
   activerecord:
     attributes:
       record:
-        types:
+        record_types:
           a:     A
           txt:   TXT
           cname: CNAME

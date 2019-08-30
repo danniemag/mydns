@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 2019_08_29_000420) do
   end
 
   create_table "records", force: :cascade do |t|
-    t.integer "type", null: false
+    t.integer "record_type", null: false
     t.string "host", null: false
     t.integer "ttl"
     t.string "content", null: false
-    t.bigint "domain_id"
+    t.integer "domain_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["domain_id"], name: "index_records_on_domain_id"

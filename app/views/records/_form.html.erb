@@ -15,6 +15,11 @@
     <%= form.label :type %>
     <%= form.select :type,
                     Record.type_attribute_names,
+
+  <div class="field">
+    <%= form.label :record_type %>
+    <%= form.select :record_type,
+                    Record.record_type_attribute_names,
                     { include_blank: true },
                     { class: 'select2 form-control' }
     %>

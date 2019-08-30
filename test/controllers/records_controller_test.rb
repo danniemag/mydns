@@ -17,7 +17,7 @@ class RecordsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create record" do
     assert_difference('Record.count') do
-      post records_url, params: { record: { content: @record.content, domain_id: @record.domain_id, host: @record.host, ttl: @record.ttl, type: @record.type } }
+      post records_url, params: { record: { content: @record.content, domain_id: @record.domain_id, host: @record.host, ttl: @record.ttl, record_type: @record.record_type } }
     end
 
     assert_redirected_to record_url(Record.last)
@@ -34,7 +34,7 @@ class RecordsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update record" do
-    patch record_url(@record), params: { record: { content: @record.content, domain_id: @record.domain_id, host: @record.host, ttl: @record.ttl, type: @record.type } }
+    patch record_url(@record), params: { record: { content: @record.content, domain_id: @record.domain_id, host: @record.host, ttl: @record.ttl, record_type: @record.record_type } }
     assert_redirected_to record_url(@record)
   end
 

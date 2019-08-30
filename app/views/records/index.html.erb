@@ -17,7 +17,7 @@
   <tbody>
     <% @records.each do |record| %>
       <tr>
-        <td><%= record.type %></td>
+        <td><%= I18n.t("activerecord.attributes.record.record_types.#{record.record_type}") %></td>
         <td><%= record.host %></td>
         <td><%= record.ttl %></td>
         <td><%= record.content %></td>

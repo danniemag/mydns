@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @record.type %>
+  <strong>RecordType:</strong>
+  <%= I18n.t("activerecord.attributes.record.record_types.#{@record.record_type}") %>
 </p>
 
 <p>
