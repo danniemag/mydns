@@ -1,4 +1,4 @@
-<% self.controller.action_name=='new' ? action_name = 'create' : action_name = 'update' %>
+<% self.controller.action_name=='update' ? action_name = 'update' : action_name = 'create' %>
 <%= form_for(@record,
              local: true,
              url: {action: action_name},
