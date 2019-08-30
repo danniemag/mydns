@@ -1,7 +1,9 @@
 class Record < ApplicationRecord
+  require 'resolv'
+
   belongs_to :domain, class_name: 'Domain', optional: false, inverse_of: :records
 
-  validate :cname_validation
+  validate :cname_validation, :ipv4_validation
 
   enum record_type: %i[a txt cname ptr]
 
@@ -16,6 +18,12 @@ class Record < ApplicationRecord
       if Record.where(domain_id: self.domain.id, host: self.host).count > 0
         errors.add(:host, " cannot save a CNAME record with same hostname as another registry")
       end
+    end
+  end
+
+  def ipv4_validation
+    if self.record_type.eql? 'a'
+      self.content =~ Resolv::IPv4::Regex ? return : errors.add(:content, " is not a valid IPv4 address!")
     end
   end
 end
