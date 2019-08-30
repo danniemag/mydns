@@ -11,7 +11,7 @@
 </p>
 
 <p>
-  <strong>Ttl:</strong>
+  <strong>TTL:</strong>
   <%= @record.ttl %>
 </p>
 
@@ -22,8 +22,8 @@
 
 <p>
   <strong>Domain:</strong>
-  <%= @record.domain %>
+  <%= @record.domain.name %>
 </p>
 
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<%= link_to 'Back', records_path %>
+<%= link_to 'Edit', edit_domain_record_path(@record.domain_id, @record.id) %> |
+<%= link_to 'Back', domain_records_path %>

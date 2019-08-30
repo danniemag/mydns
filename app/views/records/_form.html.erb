@@ -1,4 +1,11 @@
-<%= form_with(model: record, local: true) do |form| %>
+<% self.controller.action_name=='new' ? action_name = 'create' : action_name = 'update' %>
+<%= form_for(@record,
+             local: true,
+             url: {action: action_name},
+             html: {class: 'form-horizontal form-bordered',
+                    novalidate: 'novalidate',
+                    multipart: true}) do |form| %>
+
   <% if record.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(record.errors.count, "error") %> prohibited this record from being saved:</h2>
@@ -12,9 +19,10 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :type %>
-    <%= form.select :type,
-                    Record.type_attribute_names,
+    <%= form.hidden_field :domain_id, value: params[:domain_id] %>
+    DOMAIN: <%= Domain.find(params[:domain_id]).name %>
+  </div>
+
 
   <div class="field">
     <%= form.label :record_type %>
@@ -31,18 +39,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :ttl %>
+    <label>TTL</label>
     <%= form.number_field :ttl %>
   </div>
 
   <div class="field">
     <%= form.label :content %>
     <%= form.text_field :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :domain_id %>
-    <%= select_tag(:domain_id, options_from_collection_for_select(Domain.all, :id, :name), include_blank: "Select Domain...") %>
   </div>
 
   <div class="actions">
