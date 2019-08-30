@@ -1,5 +1,5 @@
 class Record < ApplicationRecord
-  belongs_to :domain
+  belongs_to :domain, class_name: 'Domain', optional: false, inverse_of: :records
 
   enum record_type: %i[a txt cname ptr]
 
