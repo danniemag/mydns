@@ -71,8 +71,8 @@ class DomainsController < ApplicationController
   end
 
   def uplist
-    DomainService.domain_file(params[:upload_domains])
-    redirect_to domains_path, notice: 'List of domains was successfully uploaded.'
+    uplist_output = DomainService.domain_file(params[:upload_domains])
+    redirect_to domains_path, notice: uplist_output
   end
 
   private

@@ -34,8 +34,9 @@ class DomainService
             Domain.create(name: domain_name, main_domain: main_domain.id) :
             Domain.create(name: domain_name)
       end
+      return 'List of domains was successfully uploaded.'
     else
-      add.error "Bad file_data: #{datafile.class.name}: #{datafile.inspect}"
+      return 'ERROR: Bad DataFile or NoFileUploaded - No operation performed'
     end
   end
 end
