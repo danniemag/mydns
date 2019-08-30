@@ -39,4 +39,12 @@ class DomainService
       return 'ERROR: Bad DataFile or NoFileUploaded - No operation performed'
     end
   end
+
+  def self.cascade_destroy(domain)
+    Record.where(domain_id: domain.id).destroy_all
+    Domain.where(main_domain: domain.id).each do |subdomain|
+      Record.where(domain_id: subdomain.id).destroy_all
+    end
+    Domain.where(main_domain: domain.id).destroy_all
+  end
 end

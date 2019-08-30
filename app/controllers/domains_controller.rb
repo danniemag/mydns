@@ -8,22 +8,16 @@ class DomainsController < ApplicationController
     @domains = Domain.all
   end
 
-  # GET /domains/1
-  # GET /domains/1.json
   def show
   end
 
-  # GET /domains/new
   def new
     @domain = Domain.new
   end
 
-  # GET /domains/1/edit
   def edit
   end
 
-  # POST /domains
-  # POST /domains.json
   def create
     ActiveRecord::Base.transaction do
       main_domain = DomainService.generate_parent_domain(domain_params[:name]) if params[:main_domain].blank?
@@ -46,8 +40,6 @@ class DomainsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /domains/1
-  # PATCH/PUT /domains/1.json
   def update
     respond_to do |format|
       if @domain.update(domain_params)
@@ -60,13 +52,14 @@ class DomainsController < ApplicationController
     end
   end
 
-  # DELETE /domains/1
-  # DELETE /domains/1.json
   def destroy
-    @domain.destroy
-    respond_to do |format|
-      format.html { redirect_to domains_url, notice: 'Domain was successfully destroyed.' }
-      format.json { head :no_content }
+    ActiveRecord::Base.transaction do
+      DomainService.cascade_destroy(@domain)
+      @domain.destroy
+      respond_to do |format|
+        format.html { redirect_to domains_url, notice: 'Domain was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
