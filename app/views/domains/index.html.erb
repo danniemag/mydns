@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All Domains</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Main Domain</th>
+      <th>Records (#)</th>
+      <th colspan="3"></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @domains.each do |domain| %>
+      <tr>
+        <td><%= domain.id %></td>
+        <td><%= domain.name %></td>
+        <td><%= domain.main_domain %> <%= [@domains.find(domain.main_domain).name] if domain.main_domain %></td>
+        <td><%= domain.records.count %></td>
+        <td><%= link_to 'Show Records', domain_records_path(domain)%></td>
+        <td><%= link_to 'Edit Domain', edit_domain_path(domain) %></td>
+        <td><%= link_to 'Destroy Domain', domain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Add Record', new_domain_record_path(domain) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Domain', new_domain_path %>
+<br><br>
+<form action="/domains/uplist"
+      enctype="multipart/form-data"
+      method="post">
+  <p>
+    <strong>Uploading a list of domains?</strong><br>
+    <input id="upload_domains" type="file" name="upload_domains">
+  </p>
+  <input type="reset" value="Reset"> <input type="submit" value="Send">
+</form>

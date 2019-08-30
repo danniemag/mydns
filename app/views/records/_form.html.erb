@@ -1,0 +1,54 @@
+<% self.controller.action_name=='update' ? action_name = 'update' : action_name = 'create' %>
+<%= form_for(@record,
+             local: true,
+             url: {action: action_name},
+             html: {class: 'form-horizontal form-bordered',
+                    novalidate: 'novalidate',
+                    multipart: true}) do |form| %>
+
+  <% if record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+      <% record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.hidden_field :domain_id, value: params[:domain_id] %>
+    DOMAIN: <%= Domain.find(params[:domain_id]).name %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :record_type %>
+    <%= form.select :record_type,
+                    Record.record_type_attribute_names,
+                    { include_blank: true },
+                    { class: 'select2 form-control' }
+    %>
+  </div>
+
+  <div class="field">
+    <%= form.label :host %>
+    <%= form.text_field :host %>
+  </div>
+
+  <div class="field">
+    <label>TTL</label>
+    <%= form.number_field :ttl %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

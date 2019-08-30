@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Records</h1>
+
+<h3>DOMAIN: <%= @domain.name %></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Host</th>
+      <th>TTL</th>
+      <th>Content</th>
+      <th>Domain</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @records.each do |record| %>
+      <tr>
+        <td><%= I18n.t("activerecord.attributes.record.record_types.#{record.record_type}") %></td>
+        <td><%= record.host %></td>
+        <td><%= record.ttl %></td>
+        <td><%= record.content %></td>
+        <td><%= record.domain.name %></td>
+        <td><%= link_to 'Show', domain_record_path(record.domain_id, record.id) %></td>
+        <td><%= link_to 'Edit', edit_domain_record_path(record.domain_id, record.id) %></td>
+        <td><%= link_to 'Destroy', domain_record_path(record.domain_id, record.id),
+                                   method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Record', new_domain_record_path %>
+<%= link_to 'Back to Domains', domains_path %>

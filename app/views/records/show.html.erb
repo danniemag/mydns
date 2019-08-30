@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>RecordType:</strong>
+  <%= I18n.t("activerecord.attributes.record.record_types.#{@record.record_type}") %>
+</p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @record.host %>
+</p>
+
+<p>
+  <strong>TTL:</strong>
+  <%= @record.ttl %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @record.content %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @record.domain.name %>
+</p>
+
+<%= link_to 'Edit', edit_domain_record_path(@record.domain_id, @record.id) %> |
+<%= link_to 'Back', domain_records_path %>

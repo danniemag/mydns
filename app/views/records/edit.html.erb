@@ -1,0 +1,6 @@
+<h1>Editing Record</h1>
+
+<%= render 'form', record: @record %>
+
+<%= link_to 'Show', domain_record_path(@record.domain_id, @record.id) %> |
+<%= link_to 'Back', domain_records_path %>
