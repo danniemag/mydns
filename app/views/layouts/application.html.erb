@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mydns</title>
+    <title>MyDNS - A tiny rails app</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div style="padding: 1rem 5rem 1rem 5rem">
+      <%= yield %>
+    </div>
   </body>
 </html>

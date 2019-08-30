@@ -1,10 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="alert alert-primary" role="alert">
+  <strong><%= notice %></strong>
+</div>
 
 <h1>Records</h1>
+<h5>DOMAIN:
+  <span style="color: darkblue">
+        <strong><%= @domain.name %></strong>
+      </span>
+</h5>
+<br>
 
-<h3>DOMAIN: <%= @domain.name %></h3>
-
-<table>
+<table id="recordsTable">
   <thead>
     <tr>
       <th>Type</th>
@@ -12,7 +18,8 @@
       <th>TTL</th>
       <th>Content</th>
       <th>Domain</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -24,10 +31,9 @@
         <td><%= record.ttl %></td>
         <td><%= record.content %></td>
         <td><%= record.domain.name %></td>
-        <td><%= link_to 'Show', domain_record_path(record.domain_id, record.id) %></td>
-        <td><%= link_to 'Edit', edit_domain_record_path(record.domain_id, record.id) %></td>
+        <td><%= link_to 'Edit', edit_domain_record_path(record.domain_id, record.id), class: 'btn btn-sm btn-warning' %></td>
         <td><%= link_to 'Destroy', domain_record_path(record.domain_id, record.id),
-                                   method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                   method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,5 +41,15 @@
 
 <br>
 
-<%= link_to 'New Record', new_domain_record_path %>
-<%= link_to 'Back to Domains', domains_path %>
+<div class="form-group">
+  <%= link_to 'New Record', new_domain_record_path, class: 'btn btn-primary' %>
+  <%= link_to 'Back To Domains', domains_path , class: 'btn btn-info' %>
+</div>
+
+
+
+<script>
+    $(document).ready( function () {
+        $('#recordsTable').DataTable();
+    } );
+</script>
