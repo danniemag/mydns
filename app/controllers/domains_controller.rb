@@ -1,5 +1,6 @@
 class DomainsController < ApplicationController
   before_action :set_domain, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: :uplist
 
   # GET /domains
   # GET /domains.json
@@ -67,6 +68,11 @@ class DomainsController < ApplicationController
       format.html { redirect_to domains_url, notice: 'Domain was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def uplist
+    DomainService.domain_file(params[:upload_domains])
+    redirect_to domains_path, notice: 'List of domains was successfully uploaded.'
   end
 
   private

@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Domains</h1>
+<h1>All Domains</h1>
 
 <table>
   <thead>
@@ -33,3 +33,13 @@
 <br>
 
 <%= link_to 'New Domain', new_domain_path %>
+<br><br>
+<form action="/domains/uplist"
+      enctype="multipart/form-data"
+      method="post">
+  <p>
+    <strong>Uploading a list of domains?</strong><br>
+    <input id="upload_domains" type="file" name="upload_domains">
+  </p>
+  <input type="reset" value="Reset"> <input type="submit" value="Send">
+</form>

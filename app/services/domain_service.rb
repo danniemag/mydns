@@ -21,4 +21,21 @@ class DomainService
     return name.partition('.')[2] if name.count('.') == 2
     return nil
   end
+
+  def self.domain_file(datafile)
+    if datafile.respond_to?(:read)
+      content = datafile.read.split("\n")
+      content.each do |domain_name|
+        next if Domain.find_by(name: domain_name).present?
+
+        main_domain = generate_parent_domain(domain_name)
+
+        main_domain.present? ?
+            Domain.create(name: domain_name, main_domain: main_domain.id) :
+            Domain.create(name: domain_name)
+      end
+    else
+      add.error "Bad file_data: #{datafile.class.name}: #{datafile.inspect}"
+    end
+  end
 end
