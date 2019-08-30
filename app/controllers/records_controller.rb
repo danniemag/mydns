@@ -67,8 +67,12 @@ class RecordsController < ApplicationController
       @record = Record.find(params[:id])
     end
 
+    def set_domain
+      @domain = Domain.find(params[:domain_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params.require(:record).permit(:type, :host, :ttl, :content, :domain_id)
+      params.require(:record).permit(:record_type, :host, :ttl, :content, :domain_id)
     end
 end
