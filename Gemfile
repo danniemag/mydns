@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 # Add JQuery functionality
 gem 'jquery-rails'
 
+# Add Bootstrap for views
+gem 'bootstrap-sass'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

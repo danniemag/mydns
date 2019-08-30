@@ -18,37 +18,40 @@
     </div>
   <% end %>
 
-  <div class="field">
     <%= form.hidden_field :domain_id, value: params[:domain_id] %>
-    DOMAIN: <%= Domain.find(params[:domain_id]).name %>
-  </div>
+    <h5>DOMAIN:
+      <span style="color: darkblue">
+        <strong><%= @domain.name %></strong>
+      </span>
+    </h5>
+  <br>
 
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :record_type %>
     <%= form.select :record_type,
                     Record.record_type_attribute_names,
                     { include_blank: true },
-                    { class: 'select2 form-control' }
+                    { class: 'form-control' }
     %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :host %>
-    <%= form.text_field :host %>
+    <%= form.text_field :host, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <label>TTL</label>
-    <%= form.number_field :ttl %>
+    <%= form.number_field :host, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :content %>
-    <%= form.text_field :content %>
+    <%= form.text_field :content, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit 'Save', class: 'btn btn-success' %>
+    <%= link_to 'Cancel', domain_records_path(@domain.id), class: 'btn btn-danger' %>
   </div>
 <% end %>

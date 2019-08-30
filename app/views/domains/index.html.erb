@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<div class="alert alert-primary" role="alert">
+  <strong><%= notice %></strong>
+</div>
 
 <h1>All Domains</h1>
 
@@ -8,7 +10,7 @@
       <th>ID</th>
       <th>Name</th>
       <th>Main Domain</th>
-      <th>Records (#)</th>
+      <th>Total Records</th>
       <th></th>
       <th></th>
       <th></th>
@@ -21,12 +23,15 @@
       <tr>
         <td><%= domain.id %></td>
         <td><%= domain.name %></td>
-        <td><%= domain.main_domain %> <%= [@domains.find(domain.main_domain).name] if domain.main_domain %></td>
+        <td><%= @domains.find(domain.main_domain).name + " [ID: #{domain.main_domain}]" if domain.main_domain %></td>
         <td><%= domain.records.count %></td>
-        <td><%= link_to 'Show Records', domain_records_path(domain)%></td>
-        <td><%= link_to 'Edit Domain', edit_domain_path(domain) %></td>
-        <td><%= link_to 'Destroy Domain', domain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add Record', new_domain_record_path(domain) %></td>
+        <td><%= link_to 'Show Records', domain_records_path(domain), class: 'btn btn-xs btn-info' %></td>
+        <td><%= link_to 'Edit Domain', edit_domain_path(domain), class: 'btn btn-xs btn-warning' %></td>
+        <td>
+          <%= link_to 'Destroy Domain', domain, method: :delete,
+                      data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+        </td>
+        <td><%= link_to 'Add Record', new_domain_record_path(domain), class: 'btn btn-xs btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,16 +39,17 @@
 
 <br>
 
-<%= link_to 'New Domain', new_domain_path %>
+<%= link_to 'New Domain', new_domain_path, class: 'btn btn-primary' %>
 <br><br>
 <form action="/domains/uplist"
       enctype="multipart/form-data"
       method="post">
   <p>
-    <strong>Uploading a list of domains?</strong><br>
-    <input id="upload_domains" type="file" name="upload_domains">
+    <strong>Or upload a list of domains:</strong><br>
+    <input id="upload_domains" type="file" name="upload_domains" class="form-control">
   </p>
-  <input type="reset" value="Reset"> <input type="submit" value="Send">
+  <input type="reset" value="Reset" class="btn btn-xs btn-secondary">
+  <input type="submit" value="Send File" class="btn btn-xs btn-success">
 </form>
 
 
